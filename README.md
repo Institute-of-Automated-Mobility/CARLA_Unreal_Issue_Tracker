@@ -25,3 +25,7 @@ Once you have complete above fix, you can open Unreal Editor as follows, provide
 cd   ~/UnrealEngine_4.26/Engine/Binaries/Linux
 ./UE4Editor
 ```
+
+## Solving the need to use clang-8 while doing `make PythonAPI` for carla
+
+Ubuntu 20.04 has clang-9 instead of clang-8. However, installation scripts asks for clang-8. There is nothing wrong with using clang-9. I replaced clang-8 with clang-9 in installation scripts as per https://web.archive.org/web/20210902060002/https://www.simonwenkel.com/2019/04/17/Installing-CARLA-on-Linux-with-current-llvm-clang.html. Of course, this link describes procedure for replacing clang-7 with clang-8 but the idea is same.
