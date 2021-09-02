@@ -42,12 +42,12 @@ Following is an explanation for this error and how to fix this:
 
 
 Apparently there is an ambiguity issue in file `LibCarla/source/test/common/test_streaming.cpp` due to
--the declaration of class Server in both `carla/streaming/Server.h` and `carla/streaming/low_level/Server.h`
--the declaration of class Server in both `carla/streaming/Client.h` and `carla/streaming/low_level/Client.h`
+1. the declaration of class Server in both `carla/streaming/Server.h` and `carla/streaming/low_level/Server.h`
+2. the declaration of class Server in both `carla/streaming/Client.h` and `carla/streaming/low_level/Client.h`
 
 Solved with a few modifications :
-Line 58 and 92, replace `Server` by `carla::streaming::low_level::Server`
-Line 63 and 95, replace `Client` by `carla::streaming::low_level::Client`
+1. Line 58 and 92, replace `Server` by `carla::streaming::low_level::Server`
+2. Line 63 and 95, replace `Client` by `carla::streaming::low_level::Client`
 
 You can check the diff of changes  that was made to fix this here: https://gist.github.com/rahulbhadani/f5b18ddaad0ef0daba10d9b57c0499d3
 
