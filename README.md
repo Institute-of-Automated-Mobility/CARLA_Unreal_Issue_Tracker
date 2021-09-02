@@ -51,3 +51,17 @@ Solved with a few modifications :
 
 You can check the diff of changes  that was made to fix this here: https://gist.github.com/rahulbhadani/f5b18ddaad0ef0daba10d9b57c0499d3
 
+
+## python: command not found
+While doing `make launch` to compile Carla server, we get the following error:
+```
+carla/Util/BuildTools/BuildCarlaUE4.sh: line 129: python: command not found
+```
+
+This is simple to fix. Python 2 was depracted on Ubuntu 18.04 but moving forward with Ubuntu 20.04, there is no python 2. Default python is python3. But there is still `python` command in Carla codebase. However, Ubuntu 20.04 has `python3` command rather than `python`. To fix this, we create a symbolic link from `python3` to `python`:
+
+```
+sudo ln -s /usr/bin/python3 /usr/bin/python
+```
+
+Once symbolic link is created, redo `make launch`.
