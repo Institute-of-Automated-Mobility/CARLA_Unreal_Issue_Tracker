@@ -3,9 +3,10 @@
 
 ## INTEL-MESA: error
 
-OS: Ubuntu 20.04
-Unreal Engine Version: 4.26
-Graphics: Mesa Intel® UHD Graphics P630 (CFL GT2)
+#### OS: Ubuntu 20.04
+#### Unreal Engine Version: 4.26
+#### Graphics: Mesa Intel® UHD Graphics P630 (CFL GT2)
+
 After successful installation of Unreal Engine, upon launching `UE4Editor` if you encounter the following error:
 ```
 INTEL-MESA: error: …/src/intel/vulkan/anv_device.c:2760: GPU hung on one of our command buffers (VK_ERROR_DEVICE_LOST)
