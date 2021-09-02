@@ -28,4 +28,26 @@ cd   ~/UnrealEngine_4.26/Engine/Binaries/Linux
 
 ## Solving the need to use clang-8 while doing `make PythonAPI` for carla
 
-Ubuntu 20.04 has clang-9 instead of clang-8. However, installation scripts asks for clang-8. There is nothing wrong with using clang-9. I replaced clang-8 with clang-9 in installation scripts as per https://web.archive.org/web/20210902060002/https://www.simonwenkel.com/2019/04/17/Installing-CARLA-on-Linux-with-current-llvm-clang.html. Of course, this link describes procedure for replacing clang-7 with clang-8 but the idea is same.
+1. Ubuntu 20.04 has clang-9 instead of clang-8. However, installation scripts asks for clang-8. There is nothing wrong with using clang-9. I replaced clang-8 with clang-9 in installation scripts as per https://web.archive.org/web/20210902060002/https://www.simonwenkel.com/2019/04/17/Installing-CARLA-on-Linux-with-current-llvm-clang.html. Of course, this link describes procedure for replacing clang-7 with clang-8 but the idea is same
+2. Similarly, you need to replace `llvm-8` with `llvm-9`.
+
+In spite of that, while doing `make PythonAPI`, you may encounter following error:
+
+```
+../../LibCarla/source/test/common/test_streaming.cpp:58:3: error: reference to 'Server' is ambiguous
+Servertcp::Server srv(io.service, TESTING_PORT);
+```
+
+Following is an explanation for this error and how to fix this:
+
+
+Apparently there is an ambiguity issue in file LibCarla/source/test/common/test_streaming.cpp due to
+-the declaration of class Server in both carla/streaming/Server.h and carla/streaming/low_level/Server.h
+-the declaration of class Server in both carla/streaming/Client.h and carla/streaming/low_level/Client.h
+
+Solved with a few modifications :
+Line 58 and 92, replace "Server" by "carla::streaming::low_level::Server"
+Line 63 and 95, replace "Client" by "carla::streaming::low_level::Client"
+
+You can check the diff of changes  that was made to fix this here: https://gist.github.com/rahulbhadani/f5b18ddaad0ef0daba10d9b57c0499d3
+
