@@ -1,7 +1,7 @@
 # CARLA_Unreal_Issue_Tracker
 ### This page is about documenting any issue encountered while working on CARLA or Unreal Engine
 
-## INTEL-MESA: error
+## 1. INTEL-MESA: error
 
 #### OS: Ubuntu 20.04
 #### Unreal Engine Version: 4.26
@@ -26,7 +26,7 @@ cd   ~/UnrealEngine_4.26/Engine/Binaries/Linux
 ./UE4Editor
 ```
 
-## Solving the need to use clang-8 while doing `make PythonAPI` for carla
+## 2. Solving the need to use clang-8 while doing `make PythonAPI` for carla
 
 1. Ubuntu 20.04 has clang-9 instead of clang-8. However, installation scripts asks for clang-8. There is nothing wrong with using clang-9. I replaced clang-8 with clang-9 in installation scripts as per https://web.archive.org/web/20210902060002/https://www.simonwenkel.com/2019/04/17/Installing-CARLA-on-Linux-with-current-llvm-clang.html. Of course, this link describes procedure for replacing clang-7 with clang-8 but the idea is same
 2. Similarly, you need to replace `llvm-8` with `llvm-9`.
@@ -52,7 +52,7 @@ Solved with a few modifications :
 You can check the diff of changes  that was made to fix this here: https://gist.github.com/rahulbhadani/f5b18ddaad0ef0daba10d9b57c0499d3
 
 
-## python: command not found
+## 3. python: command not found
 While doing `make launch` to compile Carla server, we get the following error:
 ```
 carla/Util/BuildTools/BuildCarlaUE4.sh: line 129: python: command not found
